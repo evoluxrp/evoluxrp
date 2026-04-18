@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Tela de Login Evolux</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+       overflow: hidden;
+    }
+
+    body {
+      background: url('imgs/background4.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+@keyframes animarEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animar-entrada {
+  animation: animarEntrada 0.4s ease;
+}
+
+
+        .logo-topo {
+  position: fixed;
+  top: -28px;
+  left: 45%;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+.logo-topo img {
+  height: 200px;
+  object-fit: contain;
+}
+    .music-panel {
+      position: absolute;
+      top: 30px;
+      left: 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+    }
+
+    .music-icon {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .music-icon img {
+      width: 20px;
+      height: 20px;
+      filter: brightness(0) invert(1); 
+    }
+
+    .music-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .music-name {
+      font-weight: bold;
+      font-size: 14px;
+      color: white;
+    }
+
+    .music-status {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .novidades-section {
+  position: absolute;
+  top: 70%;
+  left: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  color: deepskyblue#42C1F2;
+}
+
+.novidades-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titulo-novidades {
+  font-size: 16px;
+  margin: 0;
+}
+
+.subtitulo-novidades {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  margin: 0 0 10px 0;
+
+}
+
+.icon-megafone {
+  width: 20px;
+  filter: brightness(0) saturate(100%) invert(37%) sepia(98%) saturate(748%) hue-rotate(90deg) brightness(99%) contrast(106%);
+}
+
+
+.caixa-novidade {
+  position: relative;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 15px;
+  border-radius: 10px;
+  width: 280px;
+}
+
+.caixa-novidade.menor {
+  width: 240px;
+  padding: 10px;
+} 
+
+.linha-esquerda {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  background-color: #0D94E8;
+  border-radius: 3px;
+}
+
+.linha-direita {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 1px;
+}
+
+
+.data {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.icon-calendario {
+  width: 16px;
+  filter: brightness(0) saturate(100%) invert(37%) 
+          sepia(98%) saturate(748%) 
+          hue-rotate(90deg) brightness(99%) contrast(106%);
+}
+
+.texto-novidade {
+  color: #7f8c8d;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.marcador-azul {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 12px;
+  background-color: #0D94E8;
+  border-radius: 8px;
+}
+
+.linha-vertical-separadora {
+  position: absolute;
+  top: calc(26% + 10px); 
+  left: 430px;            
+  width: 2px;             
+  height: 380px;          
+  background-color: rgba(255, 255, 255, 0.05); 
+  border-radius: 3px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.painel-login {
+  color: #fff;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.titulo-login {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.titulo-login h2 {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.circulo-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circulo-icon img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  opacity: 0.5;
+}
+
+.campo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+.campo img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+  filter: brightness(0) invert(1);
+}
+
+.input-icon {
+  position: relative;
+  margin-top: 6px;
+}
+
+.input-icon input {
+  width: 100%;
+  padding: 14px 45px 14px 18px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: none;
+  border-radius: 40px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+.input-icon img {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  width: 20px;
+  opacity: 0.4;
+  filter: brightness(0) invert(1);
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  gap: 8px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.checkbox-container input {
+  display: none;
+}
+
+.checkmark {
+  width: 16px;
+  height: 16px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.checkbox-container input:checked + .checkmark {
+  background-color: #0D94E8;
+}
+
+.linha-final {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.btn-logar {
+  background: #0D94E8;
+  color: white;
+  padding: 14px 34px;
+  border-radius: 40px;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  outline: none !important;
+}
+
+.btn-logar:hover {
+  background: #0D94E8;
+}
+
+.seta {
+  font-size: 13px;
+  color: white;
+  margin-left: 2px;
+}
+
+.tabs {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  font-size: 13px;
+  color: #aaa;
+  padding-top: 10px;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 5px;
+  font-weight: 500;
+}
+
+.tab-underline {
+  position: absolute;
+  top: 0;
+  height: 2px;
+  width: 60px;
+  background-color: #0D94E8;
+  transition: all 0.3s ease;
+  left: 0;
+}
+
+@font-face {
+  font-family: 'Fido';
+  src: url('fonts/Fido W01 Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+  </style>
+</head>
+<body>
+      <div class="logo-topo">
+      <img src="imgs/logo2.png" alt="Logo do Servidor">
+    </div>
+
+  <div class="music-panel">
+    <div class="music-icon">
+      <img src="imgs/musica.png" alt="Música">
+    </div>
+    <div class="music-icon" id="playPauseBtn">
+      <img src="imgs/botao-play.png" alt="Play">
+    </div>
+    <div class="music-text">
+      <span class="music-name">Flo Rida- Right Round </span>
+      <span class="music-status" id="musicStatus">Tocando agora</span>
+    </div>
+  </div>
+
+  <audio id="music" autoplay>
+    <source src="Flo Rida - Right Round.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+<div class="novidades-section" style="top: 130px;">
+  <div class="novidades-header">
+    <img src="imgs/megafone.png" alt="Megafone" class="icon-megafone">
+    <h2 class="titulo-novidades">Novidades</h2>
+  </div>
+  <p class="subtitulo-novidades">Veja as novidades do nosso servidor</p>
+
+
+  <div class="caixa-novidade">
+    <div class="marcador-azul"></div>
+    <div class="linha-esquerda"></div>
+    <div class="linha-direita"></div>
+    <div class="data">
+      <img src="imgs/calendario.png" alt="Calendário" class="icon-calendario">
+      <span>23.10.24</span>
+    </div>
+    <div class="texto-novidade">
+      Novo painel de login<br>
+      Nova loadscreen<br>
+      Nova hud<br>
+      Novo painel de login<br>
+      Novo painel de login<br>
+      Nova hud<br>
+    </div>
+  </div>
+
+  <div class="caixa-novidade menor">
+    <div class="marcador-azul"></div>
+    <div class="linha-esquerda"></div>
+    <div class="linha-direita"></div>
+    <div class="data">
+      <img src="imgs/calendario.png" alt="Calendário" class="icon-calendario">
+      <span>23.10.24</span>
+    </div>
+    <div class="texto-novidade">
+      Novo painel de login<br>
+      Nova hud
+    </div>
+  </div>
+
+  <div class="caixa-novidade">
+    <div class="marcador-azul"></div>
+    <div class="linha-esquerda"></div>
+    <div class="linha-direita"></div>
+    <div class="data">
+      <img src="imgs/calendario.png" alt="Calendário" class="icon-calendario">
+      <span>23.10.24</span>
+    </div>
+    <div class="texto-novidade">
+      Novo painel de login<br>
+      Nova loadscreen<br>
+      Nova hud<br>
+      Nova hud<br>
+    </div>
+  </div>
+</div>
+<div class="linha-vertical-separadora"></div>
+
+<div class="container" style="top: 130px; gap: 290px;  padding: 180px;">
+
+  <div class="linha-vertical"></div>
+
+
+<div id="login" class="tab-content">
+  <div class="painel-login">
+    <div class="titulo-login">
+      <div class="circulo-icon">
+        <img src="imgs/usuario.png" alt="Usuário">
+      </div>
+      <h2>Painel de login</h2>
+    </div>
+    <p>Para entrar na cidade é preciso fazer login</p>
+
+    <div class="campo">
+      <img src="imgs/escudo.png" alt="Segurança">
+      <span>Seus dados estão seguros.</span>
+    </div>
+
+    <div class="input-icon">
+      <input type="text" placeholder="Usuário">
+      <img src="imgs/usuario.png" alt="Usuário">
+    </div>
+
+    <div class="input-icon">
+      <input type="password" placeholder="Senha">
+      <img src="imgs/cadeado.png" alt="Senha">
+    </div>
+
+    <div class="input-icon" id="campoRepetirSenha" style="display: none;">
+  <input type="password" placeholder="Repetir Senha">
+  <img src="imgs/cadeado.png" alt="Senha">
+</div>
+
+<!-- Campo E-mail -->
+<div class="input-icon" id="campoEmail" style="display: none;">
+  <input type="email" placeholder="E-mail">
+  <img src="imgs/email.png" alt="E-mail">
+</div>
+
+<!-- Campo Mensagem -->
+<div class="input-icon" id="campoMensagem" style="display: none;">
+  <input type="text" placeholder="Mensagem">
+  <img src="imgs/mensagem.png" alt="Mensagem">
+</div>
+
+
+
+
+      <button class="btn-logar">
+        Logar
+        <span class="seta">➜</span>
+      </button>
+    </div>
+
+      <div class="tabs">
+      <div class="tab active" data-target="login">Login</div>
+      <div class="tab" data-target="registrar">Registrar</div>
+      <div class="tab" data-target="recuperar">Recuperação</div>
+      <div class="tab-underline"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
